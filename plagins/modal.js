@@ -7,13 +7,11 @@ const getTime = () => {
 const renderTime = (timeHere) => {
     setInterval(() => {
         timeHere.innerHTML = getTime()
-    }, 1000);
+    }, 200);
 }
 
 Element.prototype.appendAfter = function (element) {
     element.parentNode.insertBefore(this, element.nextSibling)
-    console.log(element);
-
 }
 
 function noop() { }
@@ -33,7 +31,6 @@ function _CreateModalFooter(buttons = []) {
 
         wrap.appendChild($btn)
     })
-
     return wrap
 }
 
@@ -48,21 +45,20 @@ function _createModal(options) {
                     <span class="modal-title">${options.title || 'Window'}</span>
                     ${options.closable ? `<span class="modal-close" data-close='true'>&times;</span>` : ''}
                 </div>
-                <div class='modal-time' id='timeHere'></div>
-                <div class="modal-body" data-content></div>
+                <div class='modal-time' id='timeHere'></div >
+                <div class="modal-body" data-content>${options.content}</div>
                 
             </div>
         </div>
     `)
+    const timeHere = modal.querySelector('#timeHere')
+    renderTime(timeHere)
 
     const footer = _CreateModalFooter(options.footerButtons)
-    console.log(footer);
 
     footer.appendAfter(modal.querySelector('[data-content]'))
 
     document.body.append(modal)
-    const timeHere = modal.querySelector('#timeHere')
-    renderTime(timeHere)
     return modal
 }
 
@@ -79,7 +75,7 @@ $.modal = function (options) {
 
             // let options = defaultOptions;
             // const img = $modal.querySelector('.modal-img')
-        
+
             // const title = $modal.querySelector('.modal-title')
             // const content = $modal.querySelector('.modal-body')
             // if (id) {
@@ -93,8 +89,6 @@ $.modal = function (options) {
                 return console.log('modal is destroyed')
             }
             !closing && $modal.classList.add('open')
-
-
         },
         close() {
             closing = true
@@ -103,6 +97,9 @@ $.modal = function (options) {
             setTimeout(() => {
                 $modal.classList.remove('hide')
                 closing = false
+                if (typeof options.onClose === 'function') {
+                    options.onClose()
+                }
             }, ANIMATION_SPEED)
         },
     }

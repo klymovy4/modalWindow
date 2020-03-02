@@ -73,25 +73,25 @@ const defaultOptions = {
     ]
 }
 
-const confirmModal = $.modal({
-    title: 'Уверены?',
-    closable: true,
-    width: '450px',
-    footerButtons: [
-        {
-            text: 'Отменить', type: 'secondary', handler() {
-                confirmModal.close()
-            }
-        },
-        {
-            text: 'Удалить', type: 'danger', handler() {
-                confirmModal.close()
-            }
-        }
-    ]
-})
+// const confirmModal = $.modal({
+//     title: 'Уверены?',
+//     closable: true,
+//     width: '450px',
+//     footerButtons: [
+//         {
+//             text: 'Отменить', type: 'secondary', handler() {
+//                 confirmModal.close()
+//             }
+//         },
+//         {
+//             text: 'Удалить', type: 'danger', handler() {
+//                 confirmModal.close()
+//             }
+//         }
+//     ]
+// })
 
-const fruits = [
+let fruits = [
     { id: 1, title: 'apple', price: 10, img: 'https://picsum.photos/id/4/286/180', text: 'Далеко-далеко за словесными горами.' },
     { id: 2, title: 'Microsoft', price: 20, img: 'https://picsum.photos/id/15/286/180', text: 'Далеко-далеко за словесными горами.' },
     { id: 3, title: 'AliExpress', price: 30, img: 'https://picsum.photos/id/1/286/180', text: 'Далеко-далеко за словесными горами.' },
@@ -130,11 +130,16 @@ document.addEventListener('click', event => {
         `)
         priceModal.open()
     } else if (target === 'remove') {
-        confirmModal.setContent(`
-            <img style="width:100px" src=${fruit.img} />
-            <p>Вы удаляете  <strong>${fruit.title}</strong></p>
-        `)
-        confirmModal.open()
+        $.confirm({
+            title: 'Вы уверены?',
+            content: `<img style="width:100px" src=${fruit.img} /><p>Вы удаляете  <strong>${fruit.title}</strong></p>
+            `
+        }).then(() => {
+        }).catch(() => {
+            fruits = fruits.filter(el => el.id !== id)
+            renderCard()
+        })
+
     }
 })
 
