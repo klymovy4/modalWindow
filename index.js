@@ -66,7 +66,7 @@ const defaultOptions = {
     width: '500px',
     footerButtons: [
         {
-            text: 'Okл', type: 'primary', handler() {
+            text: 'Ok', type: 'primary', handler() {
                 priceModal.close()
             }
         }
