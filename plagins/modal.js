@@ -48,8 +48,7 @@ function _createModal(options) {
                     <span class="modal-title">${options.title || 'Window'}</span>
                     ${options.closable ? `<span class="modal-close" data-close='true'>&times;</span>` : ''}
                 </div>
-                    <div class='modal-time' id='timeHere'></div>
-                    <img class="modal-img" src="" />
+                <div class='modal-time' id='timeHere'></div>
                 <div class="modal-body" data-content></div>
                 
             </div>
@@ -78,15 +77,15 @@ $.modal = function (options) {
         open(id) {
             // onModalOpen(modalType, $modal, id, closing, destroyed)
 
-            let options = defaultOptions;
-            const img = $modal.querySelector('.modal-img')
+            // let options = defaultOptions;
+            // const img = $modal.querySelector('.modal-img')
         
-            const title = $modal.querySelector('.modal-title')
-            const content = $modal.querySelector('.modal-body')
-            if (id) {
-                options = fruits.find(element => element.id === id) || defaultOptions;
-            }
-            title.innerHTML = options.title
+            // const title = $modal.querySelector('.modal-title')
+            // const content = $modal.querySelector('.modal-body')
+            // if (id) {
+            //     options = fruits.find(element => element.id === id) || defaultOptions;
+            // }
+            // title.innerHTML = options.title
             // img.setAttribute('src', options.img)
             // content.innerHTML = renderModalContent(options, modalType)
             // =================================

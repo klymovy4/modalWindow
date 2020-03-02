@@ -61,12 +61,12 @@
 // ==============================================
 
 const defaultOptions = {
-    title: 'Price On Good',
+    title: 'Цена на товар',
     closable: true,
     width: '500px',
     footerButtons: [
         {
-            text: 'Ok', type: 'primary', handler() {
+            text: 'Okл', type: 'primary', handler() {
                 priceModal.close()
             }
         }
@@ -76,7 +76,7 @@ const defaultOptions = {
 const confirmModal = $.modal({
     title: 'Уверены?',
     closable: true,
-    width: '400px',
+    width: '450px',
     footerButtons: [
         {
             text: 'Отменить', type: 'secondary', handler() {
@@ -84,7 +84,7 @@ const confirmModal = $.modal({
             }
         },
         {
-            text: 'Удалить', type: 'вфтпук', handler() {
+            text: 'Удалить', type: 'danger', handler() {
                 confirmModal.close()
             }
         }
@@ -99,7 +99,7 @@ const fruits = [
 
 
 const toHTML = fruit => `
-        <div class="card" style="width: 18rem;">
+        <div class="card my-1" style="width: 18rem;">
             <img src=${fruit.img} class="card-img-top" alt="${fruit.title}">
             <div class="card-body">
                 <h5 class="card-title">${fruit.title}</h5>
@@ -118,9 +118,6 @@ function renderCard() {
 }
 renderCard()
 
-
-
-
 document.addEventListener('click', event => {
     event.preventDefault()
     const target = event.target.dataset.btn
@@ -128,17 +125,18 @@ document.addEventListener('click', event => {
     const fruit = fruits.find(el => el.id === id)
     if (target === 'price') {
         priceModal.setContent(`
-            <p>Цена на  ${fruit.title}: <strong>${fruit.price}$</strong></p>
+            <img style="width:100px" src=${fruit.img} />
+            <p>Цена на<strong> ${fruit.title}</strong> состовляет: <strong>${fruit.price}$</strong> </p>
         `)
         priceModal.open()
     } else if (target === 'remove') {
         confirmModal.setContent(`
-        <p>Вы удаляете  <strong>${fruit.title}</strong></p>
+            <img style="width:100px" src=${fruit.img} />
+            <p>Вы удаляете  <strong>${fruit.title}</strong></p>
         `)
         confirmModal.open()
     }
 })
-
 
 const priceModal = $.modal(defaultOptions)
 

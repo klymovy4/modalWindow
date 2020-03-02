@@ -36,7 +36,6 @@ function _createRemoveModal() {
                         <span data-close="true" aria-hidden="true">&times;</span>
                     </button>
                     </div>
-                    <img class='modal-img' src="" />
                     <div class="modal-body">
                     <p></p>
                     </div>
