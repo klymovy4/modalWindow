@@ -16,7 +16,7 @@
 //     Вяземский: 26,
 //     Paris: 4,
 //     Berlin: 5,
-//     Milano: 6,
+//     Milan: 6,
 //     Brno: 9
 // }
 
